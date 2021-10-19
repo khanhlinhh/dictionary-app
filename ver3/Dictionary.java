@@ -6,7 +6,6 @@ import java.sql.*;
 
 public class Dictionary {
     Hashtable<String, String> words = new Hashtable<>();
-
     public void add(Word word) {
         words.put(word.getWord_target(), word.getWord_explain());
     }
