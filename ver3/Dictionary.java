@@ -50,9 +50,4 @@ public class Dictionary {
     }
 
     }
-    public static void main(String[] args) {
-        String word = "a";
-        Dictionary dic = new Dictionary();
-        dic.searchWord(word);
-    }
 }
