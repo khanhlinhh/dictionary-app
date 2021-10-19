@@ -30,14 +30,16 @@ public class DictionaryManagement {
         try {
             Connection c = getConnection(dbURL);
             Statement stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT word, description FROM tudienanhviet LIMIT 1000;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tudienanhviet LIMIT 1000;");
 
-            int index = 1;
-            System.out.println("NO\tEng\t\t\t\t\tVie");
+            System.out.println("Eng\t\tPronounce\t\tPOS\t\tVie");
             while (rs.next()) {
                 String target = rs.getString("word");
-                String explain = rs.getString("description");
-                System.out.println(index++ + "\t" + target + "\t\t\t\t\t" + explain);
+                String pronounce = rs.getString("pronounce");
+                String explain[] = rs.getString("description").split(":", 2);
+                String partOfSpeech = explain[0];
+                String meaning = explain[1];
+                System.out.println(target + "\t\t" + pronounce + "\t\t" + partOfSpeech + "\t\t" + meaning);
             }
             c.close();
 
@@ -57,16 +59,21 @@ public class DictionaryManagement {
     public void dictionaryLookup() {
         try {
             Connection c = getConnection(dbURL);
+            String sql = "SELECT * FROM tudienanhviet WHERE word = ?";
 
             Scanner myvar = new Scanner(System.in);
             System.out.print("Từ bạn muốn tra cứu: ");
-            String word = myvar.nextLine();
+            String target = myvar.nextLine();
 
-            Statement stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM tudienanhviet WHERE word ='" + word + "';");
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, target);
+            ResultSet rs = ps.executeQuery();
 
-            String explain = rs.getString("description");
-            System.out.println("Nghĩa của từ đó là: " + explain);
+            String pronounce = rs.getString("pronounce");
+            String explain[] = rs.getString("description").split(":", 2);
+            String partOfSpeech = explain[0];
+            String meaning = explain[1];
+            System.out.println(target + "\t\t" + pronounce + "\t\t" + partOfSpeech + "\t\t" + meaning);
 
             c.close();
 
@@ -83,16 +90,19 @@ public class DictionaryManagement {
 
             Scanner myvar = new Scanner(System.in);
             System.out.print("Từ bạn muốn tra cứu: ");
-            String myQuery = myvar.nextLine();
+            String target = myvar.nextLine();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM tudienanhviet WHERE word LIKE '" + myQuery + "%';");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tudienanhviet WHERE word LIKE '" + target + "%';");
+            ;
 
-            int index = 1;
-            System.out.println("NO\tEng\t\t\t\t\tVie");
+            System.out.println("Eng\t\t\tPronounce\t\t\tPOS\t\t\tVie");
             while (rs.next()) {
-                String target = rs.getString("word");
-                String explain = rs.getString("description");
-                System.out.println(index++ + "\t" + target + "\t\t\t\t" + explain);
+                String word = rs.getString("word");
+                String pronounce = rs.getString("pronounce");
+                String explain[] = rs.getString("description").split(":", 2);
+                String partOfSpeech = explain[0];
+                String meaning = explain[1];
+                System.out.println(word + "\t\t" + pronounce + "\t\t" + partOfSpeech + "\t\t" + meaning);
             }
             c.close();
 
@@ -134,6 +144,7 @@ public class DictionaryManagement {
             String description = myvar.nextLine();
 
             stmt.executeUpdate("UPDATE tudienanhviet SET description = '" + description + "' WHERE word = '" + word + "';");
+            System.out.println("Đã sửa thành công!");
 
             c.close();
 
@@ -156,14 +167,7 @@ public class DictionaryManagement {
 
             stmt.executeUpdate("INSERT INTO tudienanhviet (word, html, description, pronounce)"
                     + " VALUES ('" + word + "',NULL,'" + description + "',NULL);");
-            ResultSet rs = stmt.executeQuery("SELECT word, description FROM tudienanhviet LIMIT 1000;");
-            int index = 1;
-            System.out.println("NO\tEng\t\t\t\t\tVie");
-            while (rs.next()) {
-                String target = rs.getString("word");
-                String explain = rs.getString("description");
-                System.out.println(index++ + "\t" + target + "\t\t\t\t\t" + explain);
-            }
+            System.out.println("Đã thêm thành công!");
             c.close();
 
         } catch (Exception e) {
