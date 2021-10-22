@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="534.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionary.dictionary.DictionaryApplication">
+   <children>
+      <VBox layoutX="1.0" layoutY="79.0" prefHeight="455.0" prefWidth="190.0" />
+      <TextField layoutX="1.0" layoutY="37.0" prefHeight="35.0" prefWidth="190.0" promptText="Enter the word">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Button layoutX="206.0" layoutY="37.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="61.0" text="Meaning">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button layoutX="274.0" layoutY="37.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="61.0" text="Speak" />
+      <Button layoutX="342.0" layoutY="37.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="61.0" text="Add" />
+      <Button layoutX="410.0" layoutY="37.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="61.0" text="Delete" />
+   </children>
+</AnchorPane>
