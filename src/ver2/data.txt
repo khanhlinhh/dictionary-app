@@ -1,0 +1,29 @@
+Music	Âm nhạc
+Person	Người
+Reading	Cách đọc
+Method	Phương pháp
+Data	Dữ liệu
+Food	Thức ăn
+Understanding	Hiểu biết
+Theory	Lý thuyết
+Dark skin	Da đen
+Attractive	Quyến rũ, hấp dẫn
+Beautiful	Xinh đẹp, đẹp
+Body shape	vóc dáng, thân hình
+Charming	Quyến rũ, thu hút
+Cute	Đáng yêu, dễ thương
+Fat	Thừa cân, béo
+Feature	đặc điểm, nét nổi bật
+Fit	cân đối, gọn gàng
+Good-looking	ưa nhìn, sáng sủa
+Handsome	đẹp trai
+Height	chiều cao
+Look	vẻ ngoài
+Lovely	đáng yêu
+Muscular	cơ bắp, lực lưỡng
+Pretty	xinh xắn
+Short	thấp
+Tall	cao
+Thin	gầy
+Ugly	xấu xí
+Weight	cân nặng
