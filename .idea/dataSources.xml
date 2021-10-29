@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Dictionary.db" uuid="853c846a-149f-4701-bbbc-edf930cf50b5">
+    <data-source source="LOCAL" name="Dictionary.db" uuid="6f986a04-52c4-4d07-af49-05c0363db122">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Dictionary.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Language.db" uuid="afc95a43-094b-46e2-aa37-b980f992cb2e">
+    <data-source source="LOCAL" name="Language.db" uuid="87edc4ea-791e-4d72-8655-d22de2ed76f9">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
