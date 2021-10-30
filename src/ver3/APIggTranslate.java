@@ -8,9 +8,24 @@ import java.util.*;
 import static java.sql.DriverManager.getConnection;
 
 public class APIggTranslate {
-    /**public static final String dbURL = "jdbc:sqlite:Language.db";
+    public static final String dbURL = "jdbc:sqlite:Language.db";
 
-    private static String translate(String langFrom, String langTo, String text) throws IOException {
+    public String[] language() throws SQLException {
+        String[] list = new String[187];
+        int sz = 0;
+        Connection c = getConnection(dbURL);
+        Statement stmt = c.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Language;");
+
+        while (rs.next()) {
+            list[sz++] = rs.getString("Language");
+        }
+        return list;
+
+    }
+
+    public String translate(String langFrom, String langTo, String text) throws IOException, SQLException {
         Connection c = getConnection(dbURL);
         String sql = "SELECT * FROM Language WHERE Language = ?";
 
@@ -20,7 +35,7 @@ public class APIggTranslate {
         String idFrom = rs.getString(2);
 
         ps.setString(1, langTo);
-        ResultSet rs = ps.executeQuery();
+        rs = ps.executeQuery();
         String idTo = rs.getString(2);
 
         String urlStr = "https://script.google.com/macros/s/AKfycbzneZ3gK8lm1Sn1G2Z9utN23z23cbDVRnaHH7EgdlRGBPhOaEU/exec" +
@@ -40,15 +55,4 @@ public class APIggTranslate {
         return response.toString();
     }
 
-    public static void main(String[] args) throws IOException {
-        Scanner myvar = new Scanner(System.in);
-        System.out.print("Nhập đoạn văn bản bạn muốn dịch:");
-        String target = myvar.nextLine();
-        System.out.print("Bạn muốn dịch từ ngôn ngữ: ");
-        String langFrom = myvar.nextLine();
-        System.out.print("Bạn muốn dịch sang ngôn ngữ: ");
-        String langTo = myvar.nextLine();
-        System.out.println("Translated text: " + translate(langFrom, langTo, target));
-    }
-*/
 }
