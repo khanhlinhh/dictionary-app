@@ -15,7 +15,7 @@ public class DictionaryCommandline {
     public void dictionaryAdvanced() {
 //        management.insertFromFile();
 //        management.dictionaryLookup();
-        management.dictionarySearcher();
+//        management.dictionarySearcher();
 //        management.addNewWord();
 //        showAllWords();
     }

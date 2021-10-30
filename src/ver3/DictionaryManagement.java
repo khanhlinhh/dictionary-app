@@ -1,14 +1,41 @@
 package ver3;
 
-import java.util.*;
-import java.io.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
+import java.util.Map;
+import java.util.Scanner;
 
 import static java.sql.DriverManager.getConnection;
 
 public class DictionaryManagement {
+    public static DatabaseConnection dbConnection = new DatabaseConnection();
+    public static String sql = "select *from tudienanhviet where word = ?";
     public static final String dbURL = "jdbc:sqlite:Dictionary.db";
     Dictionary dictionary = new Dictionary();
+
+    public String getMeaning(String word) throws SQLException {
+        Connection conn = dbConnection.getDBConnection();
+        String meaning;
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1,word);
+        ResultSet rs = ps.executeQuery();
+        meaning = rs.getString("description");
+        conn.close();
+        return meaning;
+    }
+
+    public String getPronun(String word) throws SQLException {
+        Connection con = dbConnection.getDBConnection();
+        String pronun;
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1,word);
+        ResultSet rs = ps.executeQuery();
+        pronun = rs.getString("pronounce");
+        con.close();
+        return pronun;
+    }
 
     public void insertFromCommandline() {
         Scanner myvar = new Scanner(System.in);
@@ -26,9 +53,9 @@ public class DictionaryManagement {
         }
     }
 
-    public void insertFromFile() {
+    public void dictionarySuggest() {
         try {
-            Connection c = getConnection(dbURL);
+            Connection c = dbConnection.getDBConnection();
             Statement stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM tudienanhviet LIMIT 1000;");
 
@@ -56,24 +83,18 @@ public class DictionaryManagement {
             System.out.println(index++ + "\t\t" + e.getKey() + "\t\t\t" + e.getValue());
     }
 
-    public void dictionaryLookup() {
+    public void dictionaryLookup(String word, String meaning, String pronounce) {
         try {
             Connection c = getConnection(dbURL);
             String sql = "SELECT * FROM tudienanhviet WHERE word = ?";
 
-            Scanner myvar = new Scanner(System.in);
-            System.out.print("Từ bạn muốn tra cứu: ");
-            String target = myvar.nextLine();
-
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setString(1, target);
+            ps.setString(1, word);
             ResultSet rs = ps.executeQuery();
 
-            String pronounce = rs.getString("pronounce");
-            String explain[] = rs.getString("description").split(":", 2);
-            String partOfSpeech = explain[0];
-            String meaning = explain[1];
-            System.out.println(target + "\t\t" + pronounce + "\t\t" + partOfSpeech + "\t\t" + meaning);
+            word = rs.getString(1);
+            pronounce = rs.getString("pronounce");
+            meaning = rs.getString("description");
 
             c.close();
 
@@ -83,33 +104,26 @@ public class DictionaryManagement {
         }
     }
 
-    public void dictionarySearcher() {
+    public ObservableList<String> dictionarySearcher(String wordSearch) {
+        ObservableList<String> items = FXCollections.observableArrayList();
         try {
-            Connection c = getConnection(dbURL);
+            int n = 0;
+            Connection c = dbConnection.getDBConnection();
             Statement stmt = c.createStatement();
-
-            Scanner myvar = new Scanner(System.in);
-            System.out.print("Từ bạn muốn tra cứu: ");
-            String target = myvar.nextLine();
-
-            ResultSet rs = stmt.executeQuery("SELECT * FROM tudienanhviet WHERE word LIKE '" + target + "%';");
-            ;
-
-            System.out.println("Eng\t\t\tPronounce\t\t\tPOS\t\t\tVie");
-            while (rs.next()) {
-                String word = rs.getString("word");
-                String pronounce = rs.getString("pronounce");
-                String explain[] = rs.getString("description").split(":", 2);
-                String partOfSpeech = explain[0];
-                String meaning = explain[1];
-                System.out.println(word + "\t\t" + pronounce + "\t\t" + partOfSpeech + "\t\t" + meaning);
+            if (!items.isEmpty()) {
+                items.clear();
             }
-            c.close();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tudienanhviet WHERE word LIKE '" + wordSearch + "%';");
+            while (rs.next() && n < 20) {
+                String word = rs.getString("word");
+                items.add(word);
+            }
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
+        return items;
     }
 
     public void delete() {
