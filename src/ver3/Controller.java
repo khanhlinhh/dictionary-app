@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -28,6 +25,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
   private DatabaseConnection connection = new DatabaseConnection();
   private DictionaryManagement dictionary = new DictionaryManagement();
+  private APIggTranslate api = new APIggTranslate();
 
   @FXML
   private TextField wordAddTField;
@@ -62,8 +60,24 @@ public class Controller implements Initializable {
   private WebView wordImage;
   private WebEngine engine;
 
-  public Controller() throws SQLException {
-  }
+  @FXML
+  private TextArea langTextFrom;
+
+  @FXML
+  private ChoiceBox<String> langToMenu;
+  @FXML
+  private ChoiceBox<String> langFromMenu;
+  @FXML
+  private Label langTextTo;
+
+  @FXML
+  private Label addNotiLabel;
+  @FXML
+  private Label deleteNotiLabel;
+  @FXML
+  private TextField editNotiLabel;
+
+  public Controller() throws SQLException {}
 
   @FXML
   void searchEnter(KeyEvent event) throws SQLException {
@@ -115,7 +129,12 @@ public class Controller implements Initializable {
     String word = wordEditTField.getText().toLowerCase();
     String meaning = meaningEditTField.getText().toLowerCase();
     String pronun = pronunEditTField.getText().toLowerCase();
-    dictionary.update(word, pronun, meaning);
+    boolean check = dictionary.update(word, pronun, meaning);
+//    if (!check) {
+//      editNotiLabel.setText("Word does not exist!");
+//    } else {
+//      editNotiLabel.setText("Thanks for your contribution!");
+//    }
     wordEditTField.setText("");
     meaningEditTField.setText("");
     pronunEditTField.setText("");
@@ -129,10 +148,15 @@ public class Controller implements Initializable {
   }
 
   @FXML
-  void deleteWordAction(ActionEvent event) {
+  void deleteWordAction(ActionEvent event) throws SQLException {
     String word = wordDeleteTField.getText().toLowerCase();
     wordDeleteTField.setText("");
-    dictionary.delete(word);
+    boolean check = dictionary.delete(word);
+//    if (!check) {
+//      deleteNotiLabel.setText("Word does not exist!");
+//    } else {
+//      deleteNotiLabel.setText("Thanks for your contribution!");
+//    }
     wordDeleteTField.setText("");
   }
 
@@ -141,54 +165,50 @@ public class Controller implements Initializable {
     wordDeleteTField.setText("");
   }
 
+  @FXML
+  void searchEnterTranslateAction(KeyEvent event) throws SQLException, IOException {
+    if (event.getCode() == KeyCode.ENTER) {
+      if (langFromMenu.getValue() == null || langToMenu.getValue() == null) {
+        alertDisplay("Hãy chọn ngôn ngữ muốn dịch!");
+      }
+      else {
+        String ans = api.translate(langFromMenu.getValue(), langToMenu.getValue(), langTextFrom.getText());
+        langTextTo.setText(ans);
+      }
+    }
+  }
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     soundButton.setVisible(false);
     engine = wordImage.getEngine();
+    String[] language = new String[0];
+    try {
+      language = api.language();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    langFromMenu.getItems().addAll(language);
+    langToMenu.getItems().addAll(language);
   }
 
-//  @FXML
-//  void translate(KeyEvent event) throws SQLException, IOException {
-//    if (event.getCode() == KeyCode.ENTER) {
-//      if (langFrom.getValue() == null || langTo.getValue() == null) {
-//        alertDisplay("Hãy chọn ngôn ngữ muốn dịch!");
-//      }
-//      else {
-//        String ans = api.translate(langFrom.getValue(), langTo.getValue(), apiTranslate.getText());
-//        translate.setText(ans);
-//      }
-//    }
-//  }
-//
-//  @Override
-//  public void initialize(URL location, ResourceBundle resources) {
-//    String[] language = new String[0];
-//    try {
-//      language = api.language();
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//    langFrom.getItems().addAll(language);
-//    langTo.getItems().addAll(language);
-//  }
-//
-//  public static void alertDisplay(String message) {
-//    Stage window = new Stage();
-//
-//    window.initModality(Modality.APPLICATION_MODAL);
-//    window.setMinWidth(300);
-//
-//    Label label = new Label();
-//    label.setText(message);
-//    Button close = new Button("Close");
-//    close.setOnAction(e -> window.close());
-//
-//    VBox layout = new VBox(10);
-//    layout.getChildren().addAll(label, close);
-//    layout.setAlignment(Pos.CENTER);
-//
-//    Scene scene = new Scene(layout);
-//    window.setScene(scene);
-//    window.showAndWait();
-//  }
+  public static void alertDisplay(String message) {
+    Stage window = new Stage();
+
+    window.initModality(Modality.APPLICATION_MODAL);
+    window.setMinWidth(300);
+
+    Label label = new Label();
+    label.setText(message);
+    Button close = new Button("Close");
+    close.setOnAction(e -> window.close());
+
+    VBox layout = new VBox(10);
+    layout.getChildren().addAll(label, close);
+    layout.setAlignment(Pos.CENTER);
+
+    Scene scene = new Scene(layout);
+    window.setScene(scene);
+    window.showAndWait();
+  }
 }

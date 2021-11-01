@@ -66,7 +66,7 @@
                                     <Font name="Amatic SC Bold" size="62.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox fx:id="langFrom" prefHeight="32.0" prefWidth="171.0" style="-fx-background-radius: 50; -fx-background-color: #FFFFFF; -fx-font-family: Comfortaa; -fx-font-size: 18; -fx-text-fill: rgb(61, 44, 141);">
+                              <ChoiceBox fx:id="langFromMenu" prefHeight="32.0" prefWidth="171.0" style="-fx-background-radius: 50; -fx-background-color: #FFFFFF; -fx-font-family: Comfortaa; -fx-font-size: 18; -fx-text-fill: rgb(61, 44, 141);">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -82,7 +82,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <ChoiceBox fx:id="langTo" prefHeight="32.0" prefWidth="171.0" style="-fx-background-radius: 50; -fx-background-color: #FFFFFF; -fx-font-family: Comfortaa; -fx-font-size: 18; -fx-text-fill: rgb(61, 44, 141);">
+                              <ChoiceBox fx:id="langToMenu" prefHeight="32.0" prefWidth="171.0" style="-fx-background-radius: 50; -fx-background-color: #FFFFFF; -fx-font-family: Comfortaa; -fx-font-size: 18; -fx-text-fill: rgb(61, 44, 141);">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -92,7 +92,7 @@
                               </ChoiceBox>
                            </children>
                         </HBox>
-                        <Label fx:id="langTextTo" alignment="TOP_LEFT" layoutX="466.5" layoutY="109.0" prefHeight="367.0" prefWidth="444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-text-fill: rgb(61, 44, 141);" stylesheets="@../TextfieldScrollStyle.css" text="Corner I dont want to go to school i want to play" wrapText="true" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="109.0">
+                        <Label fx:id="langTextTo" alignment="TOP_LEFT" layoutX="466.5" layoutY="109.0" prefHeight="367.0" prefWidth="444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-text-fill: rgb(61, 44, 141);" stylesheets="@../TextfieldScrollStyle.css" wrapText="true" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="109.0">
                            <font>
                               <Font name="Comfortaa Regular" size="26.0" />
                            </font>
@@ -100,7 +100,7 @@
                               <Insets left="15.0" right="15.0" top="10.0" />
                            </padding>
                         </Label>
-                        <TextArea fx:id="langTextFrom" layoutX="14.0" layoutY="107.0" prefHeight="367.0" prefWidth="444.0" promptText="Something you want to translate" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-font-family: Comfortaa; -fx-text-fill: rgb(61, 44, 141); -fx-font-size: 26;" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="464.5" AnchorPane.topAnchor="107.0">
+                        <TextArea fx:id="langTextFrom" layoutX="14.0" layoutY="107.0" onKeyPressed="#searchEnterTranslateAction" prefHeight="367.0" prefWidth="444.0" promptText="Something you want to translate" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-font-family: Comfortaa; -fx-text-fill: rgb(61, 44, 141); -fx-font-size: 26;" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="464.5" AnchorPane.topAnchor="107.0">
                            <padding>
                               <Insets bottom="18.0" left="10.0" right="16.0" top="18.0" />
                            </padding>
@@ -208,7 +208,7 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="931.0" text="Thanks for your contribution!" textAlignment="CENTER" textFill="WHITE">
+                                    <Label fx:id="addNotiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="931.0" text="Thanks for your contribution!" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="Amatic SC Regular" size="37.0" />
                                        </font>
@@ -220,7 +220,7 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Edit">
+            <Tab fx:id="editNotiLabel" text="Edit">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -314,11 +314,14 @@
                                     <Insets top="15.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Label text="Thanks for your contribution!" textFill="WHITE">
+                                    <TextField fx:id="editNotiLabel" alignment="CENTER" editable="false" prefHeight="72.0" prefWidth="948.0" style="-fx-background-color: transparent; -fx-text-fill: #FFFFFF;" text="Thanks for your contribution!">
                                        <font>
                                           <Font name="Amatic SC Regular" size="37.0" />
                                        </font>
-                                    </Label>
+                                       <padding>
+                                          <Insets bottom="20.0" />
+                                       </padding>
+                                    </TextField>
                                  </children>
                               </HBox>
                            </children>
@@ -326,7 +329,7 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Delete">
+            <Tab fx:id="deleteNotiLabel" text="Delete">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -380,7 +383,7 @@
                                     <Insets top="15.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Label text="Thanks for your contribution!" textFill="WHITE">
+                                    <Label fx:id="deleteNotiLabel" text="Thanks for your contribution!" textFill="WHITE">
                                        <font>
                                           <Font name="Amatic SC Regular" size="37.0" />
                                        </font>

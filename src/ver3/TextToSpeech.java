@@ -17,7 +17,6 @@ public class TextToSpeech {
         voice.setPitch(130);
         voice.setVolume(3);
         voice.speak(words);
-
       } catch (Exception e1) {
         e1.printStackTrace();
       }
