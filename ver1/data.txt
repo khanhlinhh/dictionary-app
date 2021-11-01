@@ -1,0 +1,10 @@
+house	ngôi nhà
+bird	con chim
+book	quyển sách
+horse	con ngựa
+mouse	con chuột
+rabbit	con thỏ
+fish	con cá
+flower	bông hoa
+table	cái bàn
+crab	con cua
