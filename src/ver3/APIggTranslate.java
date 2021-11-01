@@ -22,7 +22,6 @@ public class APIggTranslate {
             list[sz++] = rs.getString("Language");
         }
         return list;
-
     }
 
     public String translate(String langFrom, String langTo, String text) throws IOException, SQLException {
