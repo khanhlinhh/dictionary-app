@@ -1,0 +1,46 @@
+.web-view .scroll-bar:vertical {
+    -fx-background-color:#2c365d;
+}
+
+. web-view .increment-button ,.list-view .decrement-button {
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+}
+
+. web-view .scroll-bar:horizontal .increment-arrow,
+. web-view .scroll-bar:horizontal .decrement-arrow,
+. web-view .scroll-bar:horizontal .increment-button,
+. web-view .scroll-bar:horizontal .decrement-button {
+    -fx-padding:0;
+}
+
+. web-view .scroll-bar:vertical {
+	-fx-background-radius: 20;
+    	-fx-background-color: transparent;
+	-fx-padding:0;
+}
+
+. web-view .decrement-button ,.list-view .decrement-button {
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+}
+
+. web-view .increment-button ,.list-view .increment-button {
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+}
+
+. web-view .scroll-bar:vertical .thumb {
+    -fx-background-color:#FDF6F0;
+    -fx-background-insets: 5, 5, 5;
+    -fx-background-radius: 5;
+}
+
+. web-view .scroll-bar:horizontal {
+    -fx-scale-x: 0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-opacity : 0;
+}

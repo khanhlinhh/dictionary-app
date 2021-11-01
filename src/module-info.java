@@ -5,6 +5,6 @@ module BTL.OOP.INT2204_21 {
     requires java.sql;
     requires freetts;
     requires javafx.web;
-
+    requires com.jfoenix;
     opens ver3;
 }

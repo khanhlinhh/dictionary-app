@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -16,112 +21,425 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ver3.Controller">
    <children>
-      <BorderPane layoutX="128.0" layoutY="74.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <AnchorPane prefHeight="629.0" prefWidth="341.0" style="-fx-background-color: rgb(145, 107, 191);" BorderPane.alignment="CENTER">
-               <children>
-                  <TextField fx:id="searchBar" layoutX="14.0" layoutY="13.0" onKeyPressed="#searchEnter" prefHeight="40.0" prefWidth="264.0" promptText="Type the word" style="-fx-background-radius: 50;">
-                     <font>
-                        <Font name="Comfortaa Regular" size="19.0" />
-                     </font>
-                  </TextField>
-                  <ImageView fitHeight="86.0" fitWidth="40.0" layoutX="289.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/SearchIcon.png" />
-                     </image>
-                  </ImageView>
-                  <ListView fx:id="ListSearchWord" layoutX="13.0" layoutY="59.0" prefHeight="420.0" prefWidth="314.0" stylesheets="@../styleListView.css" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="59.0">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </ListView>
-               </children>
-            </AnchorPane>
-         </left>
-         <top>
-            <AnchorPane prefHeight="142.0" prefWidth="955.0" style="-fx-background-color: rgb(61, 44, 141);" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox maxHeight="142.0" prefHeight="142.0" prefWidth="955.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane layoutX="-1.0" layoutY="140.0" prefHeight="488.0" prefWidth="955.0" side="LEFT" style="-fx-background-color: rgb(145, 107, 191);" stylesheets="@../TabPanestyle.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
+        <tabs>
+          <Tab text=" Search ">
+               <content>
+                  <AnchorPane prefHeight="488.0" prefWidth="329.0" style="-fx-background-color: rgb(145, 107, 191);">
                      <children>
-                        <ImageView fitHeight="111.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="searchBar" layoutX="14.0" layoutY="13.0" onKeyPressed="#searchEnter" prefHeight="40.0" prefWidth="264.0" promptText="Type the word" style="-fx-background-radius: 50;">
+                           <font>
+                              <Font name="Comfortaa Regular" size="19.0" />
+                           </font>
+                        </TextField>
+                        <ImageView fitHeight="86.0" fitWidth="40.0" layoutX="289.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/Logo.png" />
+                              <Image url="@../image/SearchIcon.png" />
                            </image>
-                           <HBox.margin>
-                              <Insets left="20.0" top="10.0" />
-                           </HBox.margin>
                         </ImageView>
-                        <VBox prefHeight="151.0" prefWidth="470.0">
+                        <ListView fx:id="ListSearchWord" layoutX="13.0" layoutY="59.0" prefHeight="420.0" prefWidth="314.0" stylesheets="@../styleListView.css" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="59.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </ListView>
+                        <VBox layoutX="334.0" layoutY="11.0" prefHeight="471.0" prefWidth="583.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" stylesheets="@../volumeButtonStyle.css" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="6.5" AnchorPane.topAnchor="11.0">
                            <children>
-                              <Label prefHeight="75.0" prefWidth="350.0" text="Dictionary" textFill="WHITE">
-                                 <font>
-                                    <Font name="Amatic SC Bold" size="63.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="-10.0" />
-                                 </padding>
+                              <WebView fx:id="wordImage" fontScale="0.6" prefHeight="466.0" prefWidth="523.0" stylesheets="@../HTMLscrollstyle.css">
                                  <VBox.margin>
-                                    <Insets bottom="-5.0" />
+                                    <Insets bottom="10.0" left="30.0" right="30.0" top="15.0" />
                                  </VBox.margin>
-                              </Label>
-                              <Label prefHeight="70.0" prefWidth="350.0" text="English - Vietnamese" textFill="WHITE">
-                                 <font>
-                                    <Font name="Amatic SC Regular" size="55.0" />
-                                 </font>
-                              </Label>
+                              </WebView>
                            </children>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
                         </VBox>
                      </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-         </top>
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../volumeButtonStyle.css" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox prefHeight="94.0" prefWidth="614.0">
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text=" Translate ">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="wordLabel" prefHeight="104.0" prefWidth="426.0" textFill="#3e298d">
+                        <HBox layoutX="92.0" layoutY="-5.0" AnchorPane.bottomAnchor="371.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label prefHeight="122.0" prefWidth="282.0" text="TRANSLATE FROM" textFill="WHITE">
+                                 <font>
+                                    <Font name="Amatic SC Bold" size="62.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="langFrom" prefHeight="32.0" prefWidth="171.0" style="-fx-background-radius: 50; -fx-background-color: #FFFFFF; -fx-font-family: Comfortaa; -fx-font-size: 18; -fx-text-fill: rgb(61, 44, 141);">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <HBox.margin>
+                                    <Insets top="45.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="129.0" prefWidth="39.0" text="TO" textAlignment="CENTER" textFill="#f2f2f2">
+                                 <font>
+                                    <Font name="Amatic SC Bold" size="62.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="langTo" prefHeight="32.0" prefWidth="171.0" style="-fx-background-radius: 50; -fx-background-color: #FFFFFF; -fx-font-family: Comfortaa; -fx-font-size: 18; -fx-text-fill: rgb(61, 44, 141);">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="45.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                           </children>
+                        </HBox>
+                        <Label fx:id="langTextTo" alignment="TOP_LEFT" layoutX="466.5" layoutY="109.0" prefHeight="367.0" prefWidth="444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-text-fill: rgb(61, 44, 141);" stylesheets="@../TextfieldScrollStyle.css" text="Corner I dont want to go to school i want to play" wrapText="true" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="109.0">
                            <font>
-                              <Font name="Comfortaa SemiBold" size="40.0" />
+                              <Font name="Comfortaa Regular" size="26.0" />
                            </font>
                            <padding>
-                              <Insets left="30.0" />
+                              <Insets left="15.0" right="15.0" top="10.0" />
                            </padding>
                         </Label>
-                        <Button fx:id="soundButton" mnemonicParsing="false" onAction="#soundOnAction" prefHeight="100.0" prefWidth="37.0" stylesheets="@../volumeButtonStyle.css">
-                           <HBox.margin>
-                              <Insets bottom="25.0" top="25.0" />
-                           </HBox.margin>
-                        </Button>
+                        <TextArea fx:id="langTextFrom" layoutX="14.0" layoutY="107.0" prefHeight="367.0" prefWidth="444.0" promptText="Something you want to translate" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-font-family: Comfortaa; -fx-text-fill: rgb(61, 44, 141); -fx-font-size: 26;" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="464.5" AnchorPane.topAnchor="107.0">
+                           <padding>
+                              <Insets bottom="18.0" left="10.0" right="16.0" top="18.0" />
+                           </padding>
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </TextArea>
                      </children>
-                  </HBox>
-                  <Label fx:id="pronunLabel" textFill="#3e298d">
-                     <font>
-                        <Font name="Comfortaa Light" size="22.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="40.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="meaningArea" alignment="TOP_LEFT" prefHeight="146.0" prefWidth="614.0" wrapText="true">
-                     <font>
-                        <Font name="Comfortaa Regular" size="28.0" />
-                     </font>
-                     <padding>
-                        <Insets left="40.0" right="40.0" top="18.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-                  <WebView fx:id="wordImage" prefHeight="227.0" prefWidth="614.0" stylesheets="@../WebViewstyle.css" />
+                  </AnchorPane>
+               </content></Tab>
+            <Tab text="Contribute">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="137.0" prefHeight="488.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="917.0">
+                                 <children>
+                                    <Label prefHeight="122.0" prefWidth="180.0" text="New word" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Bold" size="62.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="wordAddTField" prefHeight="41.0" prefWidth="326.0" promptText="word" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
+                                       <font>
+                                          <Font name="Comfortaa Regular" size="26.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="130.0" top="28.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="100.0" prefWidth="306.0" text="PronunCiation" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Bold" size="62.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="pronunAddTField" prefHeight="41.0" prefWidth="326.0" promptText="how you speak it" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
+                                       <font>
+                                          <Font name="Comfortaa Regular" size="26.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" top="28.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="122.0" prefWidth="180.0" text="Meaning" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Bold" size="62.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="meaningAddTField" prefHeight="41.0" prefWidth="326.0" promptText="what does it mean?" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
+                                       <font>
+                                          <Font name="Comfortaa Regular" size="26.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="130.0" top="28.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="86.0" prefWidth="758.0">
+                                 <children>
+                                    <JFXButton fx:id="addWordButton" alignment="CENTER" contentDisplay="CENTER" onAction="#addWordAction" prefHeight="72.0" prefWidth="177.0" style="-fx-background-color: rgb(240, 217, 255); -fx-background-radius: 50;" text="Add" textAlignment="CENTER" textFill="#3d2c8d">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="44.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton fx:id="refreshAddButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" onAction="#refreshAddAction" prefHeight="72.0" prefWidth="177.0" style="-fx-background-color: rgb(240, 217, 255); -fx-background-radius: 50;" text="Refresh" textAlignment="CENTER" textFill="#3d2c8d">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="44.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="150.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="76.0" prefWidth="923.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="931.0" text="Thanks for your contribution!" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="37.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Edit">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="147.0" prefHeight="488.0" prefWidth="629.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="122.0" prefWidth="180.0" text="Word" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Bold" size="62.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="wordEditTField" prefHeight="41.0" prefWidth="326.0" promptText="word" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
+                                       <font>
+                                          <Font name="Comfortaa Regular" size="26.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="130.0" top="28.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="100.0" prefWidth="306.0" text="PronunCiation" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Bold" size="62.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="pronunEditTField" prefHeight="41.0" prefWidth="326.0" promptText="how you speak it" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
+                                       <font>
+                                          <Font name="Comfortaa Regular" size="26.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" top="28.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="122.0" prefWidth="180.0" text="Meaning" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Bold" size="62.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="meaningEditTField" prefHeight="41.0" prefWidth="326.0" promptText="what does it mean?" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
+                                       <font>
+                                          <Font name="Comfortaa Regular" size="26.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="130.0" top="28.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="86.0" prefWidth="758.0">
+                                 <children>
+                                    <JFXButton fx:id="editWordButton" alignment="CENTER" contentDisplay="CENTER" onAction="#editWordAction" prefHeight="72.0" prefWidth="177.0" style="-fx-background-color: rgb(240, 217, 255); -fx-background-radius: 50;" text="Edit" textAlignment="CENTER" textFill="#3d2c8d">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="44.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton fx:id="refreshEditButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" onAction="#refreshEditAction" prefHeight="72.0" prefWidth="177.0" style="-fx-background-color: rgb(240, 217, 255); -fx-background-radius: 50;" text="Refresh" textAlignment="CENTER" textFill="#3d2c8d">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="44.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="150.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="47.0" prefWidth="903.0">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label text="Thanks for your contribution!" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="37.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Delete">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="99.0" layoutY="102.0" prefHeight="284.0" prefWidth="724.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="90.0" prefWidth="349.0" text="You want to Delete" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Bold" size="62.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="40.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="wordDeleteTField" prefHeight="50.0" prefWidth="255.0" promptText="word" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;">
+                                       <font>
+                                          <Font name="Comfortaa Regular" size="26.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="30.0" top="28.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="86.0" prefWidth="758.0">
+                                 <children>
+                                    <JFXButton fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" onAction="#deleteWordAction" prefHeight="72.0" prefWidth="177.0" style="-fx-background-color: rgb(240, 217, 255); -fx-background-radius: 50;" text="Delete" textAlignment="CENTER" textFill="#3d2c8d">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="44.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="100.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton fx:id="refreshDeleteButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" onAction="#refreshDeleteAction" prefHeight="72.0" prefWidth="177.0" style="-fx-background-color: rgb(240, 217, 255); -fx-background-radius: 50;" text="Refresh" textAlignment="CENTER" textFill="#3d2c8d">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="44.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="150.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label text="Thanks for your contribution!" textFill="WHITE">
+                                       <font>
+                                          <Font name="Amatic SC Regular" size="37.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="80.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <AnchorPane prefHeight="142.0" prefWidth="955.0" style="-fx-background-color: rgb(61, 44, 141);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox maxHeight="142.0" prefHeight="142.0" prefWidth="955.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="111.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/Logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox prefHeight="151.0" prefWidth="470.0">
+                     <children>
+                        <Label prefHeight="75.0" prefWidth="350.0" text="Dictionary" textFill="WHITE">
+                           <font>
+                              <Font name="Amatic SC Bold" size="63.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="-10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="-5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label prefHeight="70.0" prefWidth="350.0" text="English - Vietnamese" textFill="WHITE">
+                           <font>
+                              <Font name="Amatic SC Regular" size="55.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Button fx:id="soundButton" mnemonicParsing="false" onAction="#soundOnAction" prefHeight="100.0" prefWidth="37.0" stylesheets="@../volumeButtonStyle.css">
+                     <HBox.margin>
+                        <Insets bottom="25.0" top="25.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
-            </VBox>
-         </center>
-      </BorderPane>
+            </HBox>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

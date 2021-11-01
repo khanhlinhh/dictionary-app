@@ -4,7 +4,6 @@ import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
 public class TextToSpeech {
-  VoiceManager freeVM;
   Voice voice;
 
   public TextToSpeech(String words) {
@@ -17,7 +16,7 @@ public class TextToSpeech {
         voice.setRate(160);
         voice.setPitch(130);
         voice.setVolume(3);
-        SpeakText(words);
+        voice.speak(words);
 
       } catch (Exception e1) {
         e1.printStackTrace();
@@ -26,13 +25,5 @@ public class TextToSpeech {
     } else {
       throw new IllegalStateException("Cannot find voice: kevin16");
     }
-  }
-
-  public static void main(String[] args) {
-    TextToSpeech text = new TextToSpeech("The princess and the frog");
-  }
-
-  public void SpeakText(String words) {
-    voice.speak(words);
   }
 }

@@ -1,0 +1,20 @@
+.tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color:rgb(145, 107, 191);
+}
+
+
+.tab {
+  -fx-font-family: Comfortaa;
+  -fx-font-size: 18;
+  -fx-background-color: rgb(145, 107, 191);
+  -fx-background-radius: 20;
+  -fx-alignment: CENTER;
+}
+
+.tab:selected {
+    -fx-background-color: rgb(61, 44, 141) ;
+}
+
+.tab .tab-label { 
+ -fx-text-fill: #FFFFFF;
+}

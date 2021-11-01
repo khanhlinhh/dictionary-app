@@ -13,13 +13,31 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-  DatabaseConnection connection = new DatabaseConnection();
+  private DatabaseConnection connection = new DatabaseConnection();
+  private DictionaryManagement dictionary = new DictionaryManagement();
+
+  @FXML
+  private TextField wordAddTField;
+  @FXML
+  private TextField pronunAddTField;
+  @FXML
+  private TextField meaningAddTField;
+
+  @FXML
+  private TextField wordEditTField;
+  @FXML
+  private TextField pronunEditTField;
+  @FXML
+  private TextField meaningEditTField;
+
+  @FXML
+  private TextField wordDeleteTField;
 
   @FXML
   private ObservableList<String> items = FXCollections.observableArrayList();
@@ -28,48 +46,34 @@ public class Controller implements Initializable {
   private ListView<String> ListSearchWord = new ListView(items);
 
   @FXML
-  private Label meaningArea;
-
-  @FXML
-  private Label pronunLabel;
-
-  @FXML
   private TextField searchBar;
 
   @FXML
   private Button soundButton;
 
   @FXML
-  private Label wordLabel;
-
-  @FXML
   private WebView wordImage;
   private WebEngine engine;
 
+  public Controller() throws SQLException {
+  }
+
   @FXML
   void searchEnter(KeyEvent event) throws SQLException {
-    DictionaryManagement wordLookup = new DictionaryManagement();
     if (event.getCode() == KeyCode.ENTER && searchBar.getText() != "") {
       if (!soundButton.isVisible()) {
         soundButton.setVisible(true);
       }
       String word = searchBar.getText().toLowerCase();
-      String meaning = wordLookup.getMeaning(word);
-      String pronun = wordLookup.getPronun(word);
-      meaningArea.setText(meaning);
-      pronunLabel.setText(pronun);
-      wordLabel.setText(word);
-      //String url = "https://www.google.com/search?q=" + word + "&tbm=isch";
-      String url = "https://pixabay.com/images/search/" + word + "/";
-      engine.load(url);
-
+      String html = dictionary.getMeaningHTML(word);
+      engine.loadContent(html);
     } else {
       searchBar
           .textProperty()
           .addListener(
               (observable, oldValue, newValue) -> {
                 String wordSearch = searchBar.getText().toLowerCase();
-                items = wordLookup.dictionarySearcher(wordSearch);
+                items = dictionary.dictionarySearcher(wordSearch);
                 ListSearchWord.setItems(items);
               });
     }
@@ -77,29 +81,62 @@ public class Controller implements Initializable {
 
   @FXML
   void soundOnAction(ActionEvent event) {
-    String word = wordLabel.getText();
+    String word = searchBar.getText().toLowerCase();
     TextToSpeech pronunSearch = new TextToSpeech(word);
+  }
+
+  @FXML
+  void addWordAction(ActionEvent event) {
+    String word = wordAddTField.getText().toLowerCase();
+    String meaning = meaningAddTField.getText().toLowerCase();
+    String pronun = pronunAddTField.getText().toLowerCase();
+    dictionary.addNewWord(word,pronun,meaning);
+    wordAddTField.setText("");
+    meaningAddTField.setText("");
+    pronunAddTField.setText("");
+  }
+
+  @FXML
+  void refreshAddAction(ActionEvent event) {
+    wordAddTField.setText("");
+    meaningAddTField.setText("");
+    pronunAddTField.setText("");
+  }
+
+  @FXML
+  void editWordAction(ActionEvent event) {
+    String word = wordEditTField.getText().toLowerCase();
+    String meaning = meaningEditTField.getText().toLowerCase();
+    String pronun = pronunEditTField.getText().toLowerCase();
+    dictionary.update(word, pronun, meaning);
+    wordEditTField.setText("");
+    meaningEditTField.setText("");
+    pronunEditTField.setText("");
+  }
+
+  @FXML
+  void refreshEditAction(ActionEvent event) {
+    wordEditTField.setText("");
+    meaningEditTField.setText("");
+    pronunEditTField.setText("");
+  }
+
+  @FXML
+  void deleteWordAction(ActionEvent event) {
+    String word = wordDeleteTField.getText().toLowerCase();
+    wordDeleteTField.setText("");
+    dictionary.delete(word);
+    wordDeleteTField.setText("");
+  }
+
+  @FXML
+  void refreshDeleteAction(ActionEvent event) {
+    wordDeleteTField.setText("");
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     soundButton.setVisible(false);
     engine = wordImage.getEngine();
-//    DatabaseConnection connection = new DatabaseConnection();
-//    Connection Conn = connection.getDBConnection();
-//    Statement stmt = null;
-//    ResultSet rs = null;
-//    try {
-//      stmt = Conn.createStatement();
-//      rs = stmt.executeQuery("SELECT word FROM tudienanhviet");
-//      int n = 0;
-//      while (rs.next() && n < 200) {
-//        items.add(rs.getString(1));
-//        n++;
-//      }
-//
-//      ListSearchWord.setItems(items);
-//    } catch (SQLException e) {
-//    }
   }
 }
