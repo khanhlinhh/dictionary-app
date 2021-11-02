@@ -1,5 +1,7 @@
 package ver3;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -79,8 +82,11 @@ public class Controller implements Initializable {
 
   public Controller() throws SQLException {}
 
+
+
   @FXML
   void searchEnter(KeyEvent event) throws SQLException {
+
     if (event.getCode() == KeyCode.ENTER && searchBar.getText() != "") {
       if (!soundButton.isVisible()) {
         soundButton.setVisible(true);
@@ -98,6 +104,13 @@ public class Controller implements Initializable {
                 ListSearchWord.setItems(items);
               });
     }
+  }
+
+  @FXML
+  void selectWordSearch(MouseEvent event) throws SQLException {
+    String word = ListSearchWord.getSelectionModel().selectedItemProperty().getValue();
+    String html = dictionary.getMeaningHTML(word);
+    engine.loadContent(html);
   }
 
   @FXML
