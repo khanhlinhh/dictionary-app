@@ -21,7 +21,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class dictionaryApplication implements Initializable {
     private DatabaseConnection connection = new DatabaseConnection();
     private DictionaryManagement dictionary = new DictionaryManagement();
     private APIggTranslate api = new APIggTranslate();
@@ -70,7 +70,7 @@ public class Controller implements Initializable {
     private Label langTextTo;
 
 
-    public Controller() throws SQLException {
+    public dictionaryApplication() throws SQLException {
     }
 
     @FXML
