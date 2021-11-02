@@ -220,7 +220,7 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="editNotiLabel" text="Edit">
+            <Tab text="Edit">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -329,7 +329,7 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="deleteNotiLabel" text="Delete">
+            <Tab text="Delete">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
