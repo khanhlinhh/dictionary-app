@@ -1,7 +1,5 @@
 package ver3;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,13 +14,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import com.jfoenix.controls.JFXButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -111,6 +108,9 @@ public class Controller implements Initializable {
     String word = ListSearchWord.getSelectionModel().selectedItemProperty().getValue();
     String html = dictionary.getMeaningHTML(word);
     engine.loadContent(html);
+    if (!soundButton.isVisible()) {
+      soundButton.setVisible(true);
+    }
   }
 
   @FXML
