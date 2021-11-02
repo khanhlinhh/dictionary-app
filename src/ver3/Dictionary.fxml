@@ -108,6 +108,7 @@
                               <Font size="26.0" />
                            </font>
                         </TextArea>
+                        <Button fx:id="copyButton" layoutX="822.0" layoutY="13.0" mnemonicParsing="false" onAction="#copyAction" prefHeight="92.0" prefWidth="66.0" stylesheets="@../copyButtonStyle.css" />
                      </children>
                   </AnchorPane>
                </content></Tab>

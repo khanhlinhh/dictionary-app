@@ -1,0 +1,8 @@
+.button {
+	-fx-background-image:url('image/copyButton.png');
+  	-fx-background-repeat: no-repeat;
+  	-fx-background-position: right center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 60;
+	-fx-background-color: transparent;
+}

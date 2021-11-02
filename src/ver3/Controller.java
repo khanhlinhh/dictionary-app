@@ -15,7 +15,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -182,7 +182,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void copyToClipboard() {
+    void copyAction(ActionEvent event) {
         Clipboard clipboard = Clipboard.getSystemClipboard();
         ClipboardContent content = new ClipboardContent();
         content.putString(langTextTo.getText());
@@ -213,13 +213,16 @@ public class Controller implements Initializable {
         Label label = new Label();
         label.setText(message);
         label.setFont(Font.font("Comfortaa"));
-        Button close = new Button("Close");
+        label.setStyle("-fx-text-fill: #FFFFFF");
+        JFXButton close = new JFXButton("Close");
         close.setFont(Font.font("Comfortaa"));
+        close.setStyle("-fx-text-fill: #FFFFFF");
         close.setOnAction(e -> window.close());
 
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label, close);
         layout.setAlignment(Pos.CENTER);
+        layout.setStyle("-fx-background-color:  rgb(145, 107, 191)");
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
