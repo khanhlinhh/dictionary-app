@@ -70,12 +70,12 @@ public class Controller implements Initializable {
   @FXML
   private Label langTextTo;
 
-  @FXML
-  private Label addNotiLabel;
-  @FXML
-  private Label deleteNotiLabel;
-  @FXML
-  private TextField editNotiLabel;
+//  @FXML
+//  private Label addNotiLabel;
+//  @FXML
+//  private Label deleteNotiLabel;
+//  @FXML
+//  private TextField editNotiLabel;
 
   public Controller() throws SQLException {}
 
@@ -129,7 +129,7 @@ public class Controller implements Initializable {
     String word = wordEditTField.getText().toLowerCase();
     String meaning = meaningEditTField.getText().toLowerCase();
     String pronun = pronunEditTField.getText().toLowerCase();
-    boolean check = dictionary.update(word, pronun, meaning);
+    dictionary.update(word, pronun, meaning);
 //    if (!check) {
 //      editNotiLabel.setText("Word does not exist!");
 //    } else {
@@ -151,7 +151,7 @@ public class Controller implements Initializable {
   void deleteWordAction(ActionEvent event) throws SQLException {
     String word = wordDeleteTField.getText().toLowerCase();
     wordDeleteTField.setText("");
-    boolean check = dictionary.delete(word);
+    dictionary.delete(word);
 //    if (!check) {
 //      deleteNotiLabel.setText("Word does not exist!");
 //    } else {

@@ -69,32 +69,32 @@ public class DictionaryManagement {
         }
     }
 
-    public boolean delete(String word) throws SQLException {
+    public void delete(String word) throws SQLException {
         try {
-            PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
-            ps.setString(1,word);
-            ResultSet rs = ps.executeQuery();
-            if (!rs.next()) {
-                return false;
-            } else {
+//            PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
+//            ps.setString(1,word);
+//            ResultSet rs = ps.executeQuery();
+//            if (!rs.next()) {
+//                return false;
+//            } else {
                 stmt.executeUpdate("DELETE FROM tudienanhviet WHERE word ='" + word + "';");
                 System.out.print("Đã xóa thành công! ");
-                return true;
-            }
+//                return true;
+//            }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        return true;
+//        return true;
     }
 
-    public boolean update(String word, String pronun, String description) {
+    public void update(String word, String pronun, String description) {
         try {
-            PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
-            ResultSet rs = ps.executeQuery();
-            if (!rs.next()) {
-                return false;
-      } else {
+//            PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
+//            ResultSet rs = ps.executeQuery();
+//            if (!rs.next()) {
+//                return false;
+//      } else {
         String html =
             "<font face=\"Comfortaa\" size=\"20px\" color=\"#1C0C5B\"><h1>" + word + "</h1>";
         html += "<h3><i>" + pronun + "</i></h3>";
@@ -111,12 +111,11 @@ public class DictionaryManagement {
                 + word
                 + "';");
         System.out.println("Đã sửa thành công!");
-        return true;
-            }
+//            }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        return true;
+//        return true;
     }
 }
