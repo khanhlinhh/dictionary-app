@@ -14,7 +14,7 @@ public class APIggTranslate {
     public static final String dbURL = "jdbc:sqlite:Language.db";
 
     public String[] language() throws SQLException {
-        String[] list = new String[187];
+        String[] list = new String[183];
         int sz = 0;
         Connection c = getConnection(dbURL);
         Statement stmt = c.createStatement();

@@ -2,6 +2,7 @@ package ver3;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import java.sql.*;
 
 public class DictionaryManagement {
@@ -10,7 +11,6 @@ public class DictionaryManagement {
     private PreparedStatement ps = null;
     private ResultSet rs = null;
     private Statement stmt = null;
-    private static final String dbURL = "jdbc:sqlite:Dictionary.db";
 
     public DictionaryManagement() throws SQLException {
         con = dbConnection.getDBConnection();
@@ -20,11 +20,11 @@ public class DictionaryManagement {
     public String getMeaningHTML(String word) throws SQLException {
         String html;
         PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
-        ps.setString(1,word);
+        ps.setString(1, word);
         ResultSet rs = ps.executeQuery();
         if (!rs.next()) {
             html = "<font face=\"Comfortaa\" size=\"20px\" color=\"#1C0C5B\"><h3> " +
-                  "The word does not exist! </h3></font>";
+                    "The word does not exist! </h3></font>";
             return html;
         }
         html = rs.getString("html");
@@ -52,7 +52,7 @@ public class DictionaryManagement {
         return items;
     }
 
-    public void addNewWord(String word, String pronun, String description) {
+    public boolean addNewWord(String word, String pronun, String description) {
         word = word.toLowerCase();
         pronun = pronun.toLowerCase();
         description.toLowerCase();
@@ -60,62 +60,63 @@ public class DictionaryManagement {
         html += "<h3><i>" + pronun + "</i></h3>";
         html += "<p>" + description + "</p></font>";
         try {
+            PreparedStatement ps = con.prepareStatement("select * from tudienanhviet where word = ?");
+            ps.setString(1, word);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return false;
+            }
             stmt.executeUpdate("INSERT INTO tudienanhviet (word, html, description, pronounce)"
-                    + " VALUES ('" + word + "','" + html + "','" + description+ "','" + pronun + "')");
-            System.out.println("Đã thêm thành công!");
+                    + " VALUES ('" + word + "','" + html + "','" + description + "','" + pronun + "')");
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
+        return true;
     }
 
-    public void delete(String word) throws SQLException {
+    public boolean delete(String word) throws SQLException {
         try {
-//            PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
-//            ps.setString(1,word);
-//            ResultSet rs = ps.executeQuery();
-//            if (!rs.next()) {
-//                return false;
-//            } else {
-                stmt.executeUpdate("DELETE FROM tudienanhviet WHERE word ='" + word + "';");
-                System.out.print("Đã xóa thành công! ");
-//                return true;
-//            }
+            PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
+            ps.setString(1, word);
+            ResultSet rs = ps.executeQuery();
+            if (!rs.next()) {
+                return false;
+            }
+            stmt.executeUpdate("DELETE FROM tudienanhviet WHERE word ='" + word + "';");
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-//        return true;
+        return true;
     }
 
-    public void update(String word, String pronun, String description) {
+    public boolean update(String word, String pronun, String description) {
         try {
-//            PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
-//            ResultSet rs = ps.executeQuery();
-//            if (!rs.next()) {
-//                return false;
-//      } else {
-        String html =
-            "<font face=\"Comfortaa\" size=\"20px\" color=\"#1C0C5B\"><h1>" + word + "</h1>";
-        html += "<h3><i>" + pronun + "</i></h3>";
-        html += "<p>" + description + "</p></font>";
-        stmt.executeUpdate(
-            "UPDATE tudienanhviet SET description "
-                + "= '"
-                + description
-                + "', html = '"
-                + html
-                + "', pronounce = '"
-                + pronun
-                + "' WHERE word = '"
-                + word
-                + "';");
-        System.out.println("Đã sửa thành công!");
-//            }
+            PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
+            ResultSet rs = ps.executeQuery();
+            if (!rs.next()) {
+                return false;
+            }
+            String html =
+                    "<font face=\"Comfortaa\" size=\"20px\" color=\"#1C0C5B\"><h1>" + word + "</h1>";
+            html += "<h3><i>" + pronun + "</i></h3>";
+            html += "<p>" + description + "</p></font>";
+            stmt.executeUpdate(
+                    "UPDATE tudienanhviet SET description "
+                            + "= '"
+                            + description
+                            + "', html = '"
+                            + html
+                            + "', pronounce = '"
+                            + pronun
+                            + "' WHERE word = '"
+                            + word
+                            + "';");
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-//        return true;
+        return true;
     }
 }
