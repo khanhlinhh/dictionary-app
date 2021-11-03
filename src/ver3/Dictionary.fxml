@@ -32,11 +32,6 @@
                               <Font name="Comfortaa Regular" size="19.0" />
                            </font>
                         </TextField>
-                        <ImageView fitHeight="86.0" fitWidth="40.0" layoutX="289.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/SearchIcon.png" />
-                           </image>
-                        </ImageView>
                         <ListView fx:id="ListSearchWord" layoutX="13.0" layoutY="59.0" onMouseClicked="#selectWordSearch" prefHeight="420.0" prefWidth="314.0" stylesheets="@../styleListView.css" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="59.0">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -51,6 +46,7 @@
                               </WebView>
                            </children>
                         </VBox>
+                        <Button fx:id="soundButton" layoutX="284.0" layoutY="8.0" mnemonicParsing="false" onAction="#soundOnAction" prefHeight="48.0" prefWidth="41.0" stylesheets="@../volumeButtonStyle.css" />
                      </children>
                   </AnchorPane>
                </content>
@@ -59,7 +55,7 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <HBox layoutX="92.0" layoutY="-5.0" AnchorPane.bottomAnchor="371.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="0.0">
+                        <HBox layoutX="62.0" AnchorPane.bottomAnchor="371.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label prefHeight="122.0" prefWidth="282.0" text="TRANSLATE FROM" textFill="WHITE">
                                  <font>
@@ -108,7 +104,7 @@
                               <Font size="26.0" />
                            </font>
                         </TextArea>
-                        <Button fx:id="copyButton" layoutX="822.0" layoutY="13.0" mnemonicParsing="false" onAction="#copyAction" prefHeight="92.0" prefWidth="66.0" stylesheets="@../copyButtonStyle.css" />
+                        <Button fx:id="copyButton" layoutX="785.0" layoutY="13.0" mnemonicParsing="false" onAction="#copyAction" prefHeight="92.0" prefWidth="66.0" stylesheets="@../copyButtonStyle.css" AnchorPane.rightAnchor="71.5" />
                      </children>
                   </AnchorPane>
                </content></Tab>
@@ -355,6 +351,9 @@
                                        </HBox.margin>
                                     </TextField>
                                  </children>
+                                 <padding>
+                                    <Insets right="70.0" />
+                                 </padding>
                               </HBox>
                               <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="86.0" prefWidth="758.0">
                                  <children>
@@ -378,6 +377,9 @@
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
+                                 <padding>
+                                    <Insets right="120.0" />
+                                 </padding>
                               </HBox>
                               <HBox alignment="CENTER">
                                  <VBox.margin>
@@ -388,6 +390,9 @@
                                        <font>
                                           <Font name="Amatic SC Regular" size="37.0" />
                                        </font>
+                                       <padding>
+                                          <Insets right="20.0" />
+                                       </padding>
                                     </Label>
                                  </children>
                               </HBox>
@@ -436,11 +441,6 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </VBox>
-                  <Button fx:id="soundButton" mnemonicParsing="false" onAction="#soundOnAction" prefHeight="100.0" prefWidth="37.0" stylesheets="@../volumeButtonStyle.css">
-                     <HBox.margin>
-                        <Insets bottom="25.0" top="25.0" />
-                     </HBox.margin>
-                  </Button>
                </children>
             </HBox>
          </children>
