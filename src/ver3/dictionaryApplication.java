@@ -217,7 +217,7 @@ public class dictionaryApplication implements Initializable {
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setMinWidth(300);
+        window.setMinWidth(380);
         window.setMinHeight(120);
 
         Label label = new Label();
