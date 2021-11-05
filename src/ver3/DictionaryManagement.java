@@ -22,6 +22,7 @@ public class DictionaryManagement {
     public String getMeaningHTML(String word) throws SQLException {
         String html;
         PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
+        word = word.trim();
         ps.setString(1, word);
         ResultSet rs = ps.executeQuery();
         if (!rs.next()) {
@@ -36,6 +37,7 @@ public class DictionaryManagement {
     /** Lấy danh sách từ gợi ý. */
     public ObservableList<String> dictionarySearcher(String wordSearch) {
         ObservableList<String> items = FXCollections.observableArrayList();
+        wordSearch = wordSearch.trim();
         try {
             int n = 0;
             if (!items.isEmpty()) {
@@ -57,9 +59,9 @@ public class DictionaryManagement {
 
     /** Thêm từ. */
     public boolean addNewWord(String word, String pronun, String description) {
-        word = word.toLowerCase();
-        pronun = pronun.toLowerCase();
-        description.toLowerCase();
+        word = word.toLowerCase().trim();
+        pronun = pronun.toLowerCase().trim();
+        description.toLowerCase().trim();
         String html = "<font face=\"Comfortaa\" size=\"20px\" color=\"#1C0C5B\"><h1>'||\"" + word + "\"||'</h1>";
         html += "<h3><i>" + pronun + "</i></h3>";
         html += "<p>" + description + "</p></font>";
@@ -81,6 +83,7 @@ public class DictionaryManagement {
 
     /** Xóa từ. */
     public boolean delete(String word) throws SQLException {
+        word = word.trim();
         try {
             PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
             ps.setString(1, word);
@@ -98,6 +101,9 @@ public class DictionaryManagement {
 
     /** Sửa từ. */
     public boolean update(String word, String pronun, String description) {
+        word = word.toLowerCase().trim();
+        pronun = pronun.toLowerCase().trim();
+        description = description.toLowerCase().trim();
         try {
             PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
             ps.setString(1, word);
