@@ -32,7 +32,7 @@
                               <Font name="Comfortaa Regular" size="19.0" />
                            </font>
                         </TextField>
-                        <ListView fx:id="ListSearchWord" layoutX="13.0" layoutY="59.0" onMouseClicked="#selectWordSearchByMouse" onKeyPressed="#selectWordSearchByKeyBoard" prefHeight="420.0" prefWidth="314.0" stylesheets="@../styleListView.css" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="59.0">
+                        <ListView fx:id="ListSearchWord" layoutX="13.0" layoutY="59.0" onKeyPressed="#selectWordSearchByKeyBoard" onMouseClicked="#selectWordSearchByMouse" prefHeight="420.0" prefWidth="314.0" stylesheets="@../styleListView.css" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="59.0">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -88,7 +88,7 @@
                               </ChoiceBox>
                            </children>
                         </HBox>
-                        <Label fx:id="langTextTo" alignment="TOP_LEFT" layoutX="466.5" layoutY="109.0" prefHeight="367.0" prefWidth="444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-text-fill: rgb(61, 44, 141);" stylesheets="@../TextfieldScrollStyle.css" textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="109.0">
+                        <Label fx:id="langTextTo" alignment="TOP_LEFT" layoutX="466.5" layoutY="109.0" prefHeight="367.0" prefWidth="444.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50; -fx-text-fill: rgb(61, 44, 141);" stylesheets="@../TextfieldScrollStyle.css" wrapText="true" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="109.0">
                            <font>
                               <Font name="Comfortaa Regular" size="26.0" />
                            </font>
