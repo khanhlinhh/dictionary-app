@@ -12,11 +12,13 @@ public class DictionaryManagement {
     private ResultSet rs = null;
     private Statement stmt = null;
 
+    /** Constructor. */
     public DictionaryManagement() throws SQLException {
         con = dbConnection.getDBConnection();
         stmt = con.createStatement();
     }
 
+    /** Lấy nghĩa của từ. */
     public String getMeaningHTML(String word) throws SQLException {
         String html;
         PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
@@ -31,6 +33,7 @@ public class DictionaryManagement {
         return html;
     }
 
+    /** Lấy danh sách từ gợi ý. */
     public ObservableList<String> dictionarySearcher(String wordSearch) {
         ObservableList<String> items = FXCollections.observableArrayList();
         try {
@@ -52,6 +55,7 @@ public class DictionaryManagement {
         return items;
     }
 
+    /** Thêm từ. */
     public boolean addNewWord(String word, String pronun, String description) {
         word = word.toLowerCase();
         pronun = pronun.toLowerCase();
@@ -75,6 +79,7 @@ public class DictionaryManagement {
         return true;
     }
 
+    /** Xóa từ. */
     public boolean delete(String word) throws SQLException {
         try {
             PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");
@@ -91,6 +96,7 @@ public class DictionaryManagement {
         return true;
     }
 
+    /** Sửa từ. */
     public boolean update(String word, String pronun, String description) {
         try {
             PreparedStatement ps = con.prepareStatement("select *from tudienanhviet where word = ?");

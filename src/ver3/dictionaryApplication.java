@@ -110,6 +110,7 @@ public class dictionaryApplication implements Initializable {
         TextToSpeech pronunSearch = new TextToSpeech(word);
     }
 
+    /** Ấ́n add để thêm từ. */
     @FXML
     void addWordAction(ActionEvent event) {
         String word = wordAddTField.getText().toLowerCase();
@@ -128,6 +129,7 @@ public class dictionaryApplication implements Initializable {
         pronunAddTField.setText("");
     }
 
+    /** Ấn refresh để sửa lại từ đầu. */
     @FXML
     void refreshAddAction(ActionEvent event) {
         wordAddTField.setText("");
@@ -135,6 +137,7 @@ public class dictionaryApplication implements Initializable {
         pronunAddTField.setText("");
     }
 
+    /** Ấn edit để sửa từ. */
     @FXML
     void editWordAction(ActionEvent event) {
         String word = wordEditTField.getText().toLowerCase();
@@ -153,6 +156,7 @@ public class dictionaryApplication implements Initializable {
         pronunEditTField.setText("");
     }
 
+    /** Ấn refresh để sửa lại từ đầu. */
     @FXML
     void refreshEditAction(ActionEvent event) {
         wordEditTField.setText("");
@@ -160,6 +164,7 @@ public class dictionaryApplication implements Initializable {
         pronunEditTField.setText("");
     }
 
+    /** Ấn delete để xóa từ. */
     @FXML
     void deleteWordAction(ActionEvent event) throws SQLException {
         String word = wordDeleteTField.getText().toLowerCase();
@@ -175,11 +180,13 @@ public class dictionaryApplication implements Initializable {
         wordDeleteTField.setText("");
     }
 
+    /** Ấn refresh để sửa lại từ đầu. */
     @FXML
     void refreshDeleteAction(ActionEvent event) {
         wordDeleteTField.setText("");
     }
 
+    /** Ấn Enter để dịch. */
     @FXML
     void searchEnterTranslateAction(KeyEvent event) throws SQLException, IOException {
         if (event.getCode() == KeyCode.ENTER) {
@@ -192,6 +199,7 @@ public class dictionaryApplication implements Initializable {
         }
     }
 
+    /** Nhấp vào icon để copy văn bản đã được dịch. */
     @FXML
     void copyAction(ActionEvent event) {
         Clipboard clipboard = Clipboard.getSystemClipboard();
@@ -200,6 +208,7 @@ public class dictionaryApplication implements Initializable {
         clipboard.setContent(content);
     }
 
+    /** Hàm khởi tạo. */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         engine = wordImage.getEngine();
@@ -213,6 +222,7 @@ public class dictionaryApplication implements Initializable {
         langToMenu.getItems().addAll(language);
     }
 
+    /** Hiện cửa sổ nhắc nhở. */
     public static void alertDisplay(String message) {
         Stage window = new Stage();
 

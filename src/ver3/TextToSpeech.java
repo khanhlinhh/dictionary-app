@@ -6,6 +6,7 @@ import com.sun.speech.freetts.VoiceManager;
 public class TextToSpeech {
   Voice voice;
 
+  /** Constructor. */
   public TextToSpeech(String words) {
     System.setProperty(
         "freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");

@@ -13,6 +13,7 @@ import static java.sql.DriverManager.getConnection;
 public class APIggTranslate {
     public static final String dbURL = "jdbc:sqlite:Language.db";
 
+    /** Lấy danh sách các ngôn ngữ. */
     public String[] language() throws SQLException {
         String[] list = new String[183];
         int sz = 0;
@@ -27,6 +28,7 @@ public class APIggTranslate {
         return list;
     }
 
+    /** Dịch. */
     public String translate(String langFrom, String langTo, String text) throws IOException, SQLException {
         Connection c = getConnection(dbURL);
         String sql = "SELECT * FROM Language WHERE Language = ?";

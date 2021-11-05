@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     public Connection conn;
+
+    /** Hàm kết nối cơ sở dữ liệu. */
     public Connection getDBConnection() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:Dictionary.db");
