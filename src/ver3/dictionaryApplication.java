@@ -66,7 +66,7 @@ public class dictionaryApplication implements Initializable {
     @FXML
     private ChoiceBox<String> langFromMenu;
     @FXML
-    private Label langTextTo;
+    private TextArea langTextTo;
 
 
     public dictionaryApplication() throws SQLException {
