@@ -208,6 +208,26 @@ public class dictionaryApplication implements Initializable {
         clipboard.setContent(content);
     }
 
+    /** Chọn từ từ danh sách gợi ý bằng chuột.*/
+    @FXML
+    void selectWordSearchByMouse(MouseEvent event) throws SQLException {
+        String word = ListSearchWord.getSelectionModel().selectedItemProperty().getValue();
+        String html = dictionary.getMeaningHTML(word);
+        engine.loadContent(html);
+        searchBar.setText(word);
+    }
+
+    /** Chọn từ từ danh sách gợi ý bằng bàn phím.*/
+    @FXML
+    void selectWordSearchByKeyBoard(KeyEvent event) throws SQLException {
+        if (event.getCode() == KeyCode.ENTER) {
+            String word = ListSearchWord.getSelectionModel().selectedItemProperty().getValue();
+            String html = dictionary.getMeaningHTML(word);
+            engine.loadContent(html);
+            searchBar.setText(word);
+        }
+    }
+
     /** Hàm khởi tạo. */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
