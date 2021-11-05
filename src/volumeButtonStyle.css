@@ -2,7 +2,6 @@
 	-fx-background-image:url('image/volumeButton.png');
   	-fx-background-repeat: no-repeat;
   	-fx-background-position: right center;
-	-fx-background-repeat: no-repeat;
 	-fx-background-size: 40;
 	-fx-background-color: transparent;
 }
