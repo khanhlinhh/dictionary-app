@@ -45,7 +45,6 @@ public class dictionaryApplication implements Initializable {
 
     @FXML
     private ObservableList<String> items = FXCollections.observableArrayList();
-
     @FXML
     private ListView<String> ListSearchWord = new ListView(items);
 
@@ -73,12 +72,10 @@ public class dictionaryApplication implements Initializable {
     public dictionaryApplication() throws SQLException {
     }
 
+    /** Nhấn enter để search từ và gợi ý từ. */
     @FXML
     void searchEnter(KeyEvent event) throws SQLException {
         if (event.getCode() == KeyCode.ENTER && searchBar.getText() != "") {
-            if (!soundButton.isVisible()) {
-                soundButton.setVisible(true);
-            }
             String word = searchBar.getText().toLowerCase();
             String html = dictionary.getMeaningHTML(word);
             engine.loadContent(html);
@@ -94,6 +91,7 @@ public class dictionaryApplication implements Initializable {
         }
     }
 
+    /** Chọn từ từ danh sách gợi ý. */
     @FXML
     void selectWordSearch(MouseEvent event) throws SQLException {
         String word = ListSearchWord.getSelectionModel().selectedItemProperty().getValue();
@@ -105,6 +103,7 @@ public class dictionaryApplication implements Initializable {
         }
     }
 
+    /** Ấn để nghe phát âm. */
     @FXML
     void soundOnAction(ActionEvent event) {
         String word = searchBar.getText().toLowerCase();
@@ -116,9 +115,13 @@ public class dictionaryApplication implements Initializable {
         String word = wordAddTField.getText().toLowerCase();
         String meaning = meaningAddTField.getText().toLowerCase();
         String pronun = pronunAddTField.getText().toLowerCase();
+        if (word == "" || meaning == "" || pronun == "") {
+            alertDisplay("Bạn ưi bạn điền thiếu kìa. Bạn điền thêm nha!");
+            return;
+        }
         boolean check = dictionary.addNewWord(word, pronun, meaning);
         if (!check) {
-            alertDisplay("This word already exists!");
+            alertDisplay("Từ này có rồi bạn ưi!");
         }
         wordAddTField.setText("");
         meaningAddTField.setText("");
@@ -137,9 +140,13 @@ public class dictionaryApplication implements Initializable {
         String word = wordEditTField.getText().toLowerCase();
         String meaning = meaningEditTField.getText().toLowerCase();
         String pronun = pronunEditTField.getText().toLowerCase();
+        if (word == "" || meaning == "" || pronun == "") {
+            alertDisplay("Bạn ưi bạn điền thiếu kìa. Bạn điền thêm nha!");
+            return;
+        }
         boolean check = dictionary.update(word, pronun, meaning);
         if (!check) {
-            alertDisplay("This word does not exist!");
+            alertDisplay("Bọn mình chưa có từ này đâu!!");
         }
         wordEditTField.setText("");
         meaningEditTField.setText("");
@@ -156,10 +163,14 @@ public class dictionaryApplication implements Initializable {
     @FXML
     void deleteWordAction(ActionEvent event) throws SQLException {
         String word = wordDeleteTField.getText().toLowerCase();
+        if (word == "") {
+            alertDisplay("Bạn ưi bạn điền thiếu kìa. Bạn điền thêm nha!");
+            return;
+        }
         wordDeleteTField.setText("");
         boolean check = dictionary.delete(word);
         if (!check) {
-            alertDisplay("This word does not exist!");
+            alertDisplay("Bọn mình chưa có từ này đâu!!");
         }
         wordDeleteTField.setText("");
     }
@@ -173,7 +184,7 @@ public class dictionaryApplication implements Initializable {
     void searchEnterTranslateAction(KeyEvent event) throws SQLException, IOException {
         if (event.getCode() == KeyCode.ENTER) {
             if (langFromMenu.getValue() == null || langToMenu.getValue() == null) {
-                alertDisplay("Hãy chọn ngôn ngữ muốn dịch!");
+                alertDisplay("Bạn chưa chọn ngôn ngữ kìa!");
             } else {
                 String ans = api.translate(langFromMenu.getValue(), langToMenu.getValue(), langTextFrom.getText());
                 langTextTo.setText(ans);
@@ -191,7 +202,6 @@ public class dictionaryApplication implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        soundButton.setVisible(false);
         engine = wordImage.getEngine();
         String[] language = new String[0];
         try {
