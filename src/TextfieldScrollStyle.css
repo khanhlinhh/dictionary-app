@@ -1,42 +1,42 @@
-.text-field .scroll-bar:vertical {
+.text-area .scroll-bar:vertical {
     -fx-background-color:#2c365d;
 }
 
-.text-field .increment-button ,. text-field .decrement-button {
+.text-area .increment-button ,. text-area .decrement-button {
     -fx-background-color:transparent;
     -fx-border-color:transparent;
 }
 
-.text-field .scroll-bar:horizontal .increment-arrow,
-.text-field .scroll-bar:horizontal .decrement-arrow,
-.text-field .scroll-bar:horizontal .increment-button,
-.text-field .scroll-bar:horizontal .decrement-button {
+.text-area .scroll-bar:horizontal .increment-arrow,
+.text-area .scroll-bar:horizontal .decrement-arrow,
+.text-area .scroll-bar:horizontal .increment-button,
+.text-area .scroll-bar:horizontal .decrement-button {
     -fx-padding:0;
 }
 
-.text-field .scroll-bar:vertical {
-	-fx-background-radius: 20;
+.text-area .scroll-bar:vertical {
+	-fx-background-radius: 50;
     	-fx-background-color: transparent;
 	-fx-padding:0;
 }
 
-.text-field .decrement-button ,. text-field .decrement-button {
+.text-area .decrement-button ,. text-area .decrement-button {
     -fx-background-color:transparent;
     -fx-border-color:transparent;
 }
 
-.text-field .increment-button ,. text-field .increment-button {
+.text-area .increment-button ,. text-area .increment-button {
     -fx-background-color:transparent;
     -fx-border-color:transparent;
 }
 
-.text-field .scroll-bar:vertical .thumb {
+.text-area .scroll-bar:vertical .thumb {
     -fx-background-color:#FDF6F0;
     -fx-background-insets: 5, 5, 5;
     -fx-background-radius: 5;
 }
 
-.text-field .scroll-bar:horizontal {
+.text-area .scroll-bar:horizontal {
     -fx-scale-x: 0;
 }
 
