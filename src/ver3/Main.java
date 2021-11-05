@@ -15,7 +15,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("Dictionary.fxml"));
         Scene scene = new Scene(loader.load(),955,628);
-        Image icon = new Image("file:Logo.png");
+        Image icon = new Image("dictionary.png");
         primaryStage.getIcons().add(icon);
         primaryStage.setScene(scene);
         primaryStage.show();
