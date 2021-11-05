@@ -91,17 +91,6 @@ public class dictionaryApplication implements Initializable {
         }
     }
 
-    /** Chọn từ từ danh sách gợi ý. */
-    @FXML
-    void selectWordSearch(MouseEvent event) throws SQLException {
-        String word = ListSearchWord.getSelectionModel().selectedItemProperty().getValue();
-        String html = dictionary.getMeaningHTML(word);
-        engine.loadContent(html);
-        searchBar.setText(word);
-        if (!soundButton.isVisible()) {
-            soundButton.setVisible(true);
-        }
-    }
 
     /** Ấn để nghe phát âm. */
     @FXML
