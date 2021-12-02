@@ -61,7 +61,7 @@ public class DictionaryManagement {
     public boolean addNewWord(String word, String pronun, String description) {
         word = word.toLowerCase().trim();
         pronun = pronun.toLowerCase().trim();
-        description.toLowerCase().trim();
+        description = description.toLowerCase().trim();
         String html = "<font face=\"Comfortaa\" size=\"20px\" color=\"#1C0C5B\"><h1>'||\"" + word + "\"||'</h1>";
         html += "<h3><i>" + pronun + "</i></h3>";
         html += "<p>" + description + "</p></font>";
